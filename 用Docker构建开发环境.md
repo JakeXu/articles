@@ -1,4 +1,4 @@
-#####用Docker轻松搭建开发环境
+# 用Docker轻松搭建开发环境
 开发一个新项目，部署开发环境是第一步，但是会由于各种原因，导致配置开发环境很费时间，针对这种情况，其实可以轻松用docker来统一部署开发环境。详细如下：
 
 我们的每个项目都在Bitbucket上有自己的group,创建了一个名为development的分支。分支的同一层级有README.md(理论上)和docker-compose.yml两个文件。  
@@ -13,7 +13,7 @@ $ git submodule foreach npm install
 $ docker-compose up -d  
 ```
 至此，一切就都已经搭建好，并运行在本地机器上了。
-#####实现原理  
+### 实现原理  
 本章介绍我们是如何实现上述工作流的。
 前提条件  
 ```
@@ -39,7 +39,7 @@ $ git submodule add git@bitbucket.org:<project>/cpanel.git
 `$ git submodule init && git submodule update  `  
 更多子模块的信息，请参考Git官方文档。
 
-######Docker化一切
+### Docker化一切
 现在我们已经搭建好了development仓库，可以通过cd的方式访问所有不同的应用程序。接下来我们要用之前提到的编排工具：Docker Compose来容器化所有的应用及其配置。
 首先从api应用程序开始。打开docker-compose.yml，为API声明一个容器，并为这个容器选择基础镜像。本示例中的代码基于Node.js，因此选择官方Node.js镜像：
 ```
@@ -134,8 +134,8 @@ Name                     Command              State      Ports
 从http://localhsot:8001可以访问dashboard。  
 从http://localhsot:8002可以访问cpanel。  
 
-#####更进一步  
-#####本地路由
+### 更进一步  
+本地路由
 
 在使用`docker-compose up -d`运行所有容器之后，可以通过http://localhost:<application_port>访问我们的应用。基于当前配置，我们可以很容易地使用jwilder/nginx-proxy加上本地路由功能，这样就可以使用和生产环境类似的URL访问本地应用了。比如，通过http://api.domain.local访问http://api.domain.com的本地版本。
 jwilder/nginx-proxy镜像将一切变得很简单。只需要在docker-compose.yml里加上描述去创建一个名为nginx的新容器。根据jwilder/nginx-proxy的README文件（挂载Docker守护进程socket，暴露80端口）配置该容器就可以了。之后，在现有容器里再添加额外的环境变量VIRTUAL_HOST和VIRTUAL_PORT，如下：
