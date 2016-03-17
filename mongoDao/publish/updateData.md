@@ -1,6 +1,6 @@
 ##调用修改数据的方法实例
->**update( collection, selector, newData )**------ 更新数据
->- collection (String) --  集合名 
+对于mongodb的更新操作来说，其考虑的情况非常的多，所以设置相对也多，但是在实际业务的使用过程中，我们发现大部分情况下，需要的设置是一致的，所以对更新操作做了如下两种封装。
+>**update( collection, selector, newData )**------ 常规的更新数据，其强制对newData采用$set操作,并options设定为w=1,upsert=true,multi=true。具体设置[点击查看](https://mongodb.github.io/node-mongodb-native/api-generated/collection.html#update)
 >- selector (Object) --  指定条件的数据对象。其中值可以为字符串，但是该字符串只能是数据库内部_id的             值，当是它的时候，其会操作掉该条数据
 >- newData (Object) -- 更新的数据 
 >- return (int) -- 修改成功的数据数量

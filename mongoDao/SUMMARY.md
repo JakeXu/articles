@@ -1,4 +1,5 @@
 * [关于MongoDB](publish/intr.md)
+* [参数配置](publish/config.md)
 * [增加数据](publish/add.md)
 * [删除数据](publish/removeData.md)
 * [修改数据](publish/updateData.md)
@@ -11,8 +12,10 @@
  - [distinct](publish/distinct.md)
  - [findAndModify](publish/findAndModify.md)
  - [findAndRemove](publish/findAndRemove.md)
+ - [count](publish/count.md)
 * [数组操作](publish/array.md)
 * [$inc自增长](publish/inc.md)
 * [MapReduce](publish/mapReduce.md)
+* [二段提交](publish/twosubmit.md)
 
 
