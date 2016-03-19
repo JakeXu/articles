@@ -3,7 +3,7 @@
 
 ##mapReduce是用于数据分析、统计的函数
 ```
-db.collection.mapReduce(
+                     db.collection.mapReduce(
                          (map),
                          (reduce),
                          (options):{
@@ -16,8 +16,8 @@ db.collection.mapReduce(
                            jsMode: <boolean>,
                            verbose: <boolean>,
                            bypassDocumentValidation: <boolean>
-                         }
-                       )
+                        }
+                     )
 
 ```
 ###参数：
@@ -51,7 +51,7 @@ db.collection.mapReduce(
 
 ### 代码块
 ```
-var map = function () {
+       var map = function () {
             emit(this.shopid, {
                 counts: 0,
                 price: 0
@@ -116,22 +116,22 @@ var map = function () {
 
 在reduce函数中聚合操作是这样写的：
 ```
-values.forEach(function (value) {
-               result.counts += value.counts;
-               result.price += value.price;
-            });
+     values.forEach(function (value) {
+        result.counts += value.counts;
+        result.price += value.price;
+     });
 
 ```
 这种情况下不会出现问题。问题稍作修改假设只统计订单金额大于50的订单，代码改成这样
 
 
 ```
-values.forEach(function (value) {
-              if(result.price > 50){
-                     result.counts += value.counts;
-                     result.price += value.price;
-              }
-            });
+    values.forEach(function (value) {
+      if(result.price > 50){
+        result.counts += value.counts;
+        result.price += value.price;
+      }
+    });
 ```
 
 
@@ -147,9 +147,6 @@ values.forEach(function (value) {
 > **猜想：**  在mapReduce的执行过程中对shop003的聚合函数执行了两次，且后一次覆盖的前一次的结果，这个问题搜索了很多论坛，有多人提出过这个问题，但是目前没看到解决的办法。
 
 当然在这个简单的问题处理上通过修改query参数能轻松解决，但是涉及到mapReduce的表结果稍微复杂，或者表设计时候就存在一些判断逻辑，这个问题无法绕过去。哪位大牛解决过这个问题，务必不吝赐教。
-
-
-
 
 当然程序员不能在一棵树上吊死，替代办法：
 ###聚合管道aggregate
