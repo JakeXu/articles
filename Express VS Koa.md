@@ -19,12 +19,13 @@
 > 使异步变成同步的书写方式，可读性增强
 > 异常处理变的可控
 > 避免callback hell问题，以及Promise不够自然的链式问题，冗余代码问题
+> 中间件以装配器模式引入，跟Express的链式模式不同
 
 **koa中的req,res** 
 关于这点，是我个人非常不喜欢koa的一个最重要的原因，有些过度封装。在Koa中，没有明确的response，request。
 如果你想返回参数，用this.body=data 的方式。这样等于弱化了web开发的很多概念，非常不好。
 
-如果我们能在Express中引入基于Generator的流程控制，那么Express就能变的更加的强大。因此个人开发了[power-express插件](https://www.npmjs.com/package/power-express)，通过它，可以使得在Express中像Koa中一样，使用Generator来进行流程控制。
+> 如果我们能在Express中引入基于Generator的流程控制，那么Express就能变的更加的强大。因此个人开发了[power-express插件](https://www.npmjs.com/package/power-express)，通过它，可以使得在Express中像Koa中一样，使用Generator来进行流程控制。并且对于中间件来说，并没有严格要求使用Generator函数，这使的链式跟装配器模式共存，它能为开发上带来更多的灵活性。
 
 下篇我们来讲讲power-express是如何实现的...
 
