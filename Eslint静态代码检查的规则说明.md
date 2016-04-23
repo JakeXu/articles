@@ -1,5 +1,6 @@
 现在JS代码的静态质量检查在项目质量保障方面的重要性与必要性已毋庸置疑。
 ESLint是一种开源方案，广受大家喜欢。我们团队中的各个项目也引用了它作为代码检查的插件。
+在此强烈推荐[airbnb的js代码规范](https://github.com/airbnb/javascript),并选用eslint-config-airbnb-base作为基准配置，不论node后端，还是前端团队中都在使用这套规范。
 ### ESLint的规则参数说明：
 
 > - 0：表示不验证
